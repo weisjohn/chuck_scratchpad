@@ -15,6 +15,7 @@
 	//// numbers
 
 	int foo;    // create an int
+	
 	5 => foo;   // "chuck" the value 5 into foo
 	<<<foo>>>;  // prints "5 :  (int)"
 
@@ -30,6 +31,21 @@
 	<<< now >>>;     // special value "now"
 	now => time t1;  // chuck now into an instance of a ChucKian time value type
 	<<< now == t1 >>>;  	// does t1 == now ?
+
+// learned while watching the 2007 lecture video - http://www.youtube.com/watch?v=2rpk461T6l4
+
+	//  =>   this is called the "chuck" operator
+	//  =^   this is called the "up-chuck" operator 
+	//       allows for unit analysis... 
+	
+						// instantiate a Sine Oscillator
+	SinOsc s => dac;	// the dac - digital analog converter...
+	while(true) {
+		Std.rand2f(30, 1000) => s.freq;
+		100::ms +=> now;   // advance time by 100::ms
+	}
+	
+
 	
 	
 // learned while stepping through - http://chuck.cs.princeton.edu/doc/language/type.html
