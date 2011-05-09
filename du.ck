@@ -10,38 +10,44 @@
 
 
 // variables and value-type lessons
-// initial stuff that I learned while stepping through - http://chuck.cs.princeton.edu/doc/language/overview.html
+// learned while stepping through - http://chuck.cs.princeton.edu/doc/language/overview.html
 
-	// int is a datatype
-	int foo; 
+	//// numbers
 
-	// "chuck" the value 5 into foo
-	5 => foo;
+	int foo;    // create an int
+	5 => foo;   // "chuck" the value 5 into foo
+	<<<foo>>>;  // prints "5 :  (int)"
 
-	 // prints "5 :  (int)"
-	<<<foo>>>;
+	// add the two inline-floats and "chuck" the sum into x
+	1.0 + 2.5 => float x; 
+	<<<x>>>; 
 
-	// float is a data type
-	// add the two inline-floats and "chuck" it into x
-	1.0 + 2.5 => float x;
-	<<<x>>>;
+	<<<foo + x>>>;   	                // an integer are coerced higher float
+	<<< (x + foo) == (foo + x) >>>;	    // order does not matter
+	
+	//// times
+	
+	<<< now >>>;     // special value "now"
+	now => time t1;  // chuck now into an instance of a ChucKian time value type
+	<<< now == t1 >>>;  	// does t1 == now ?
+	
+	
+// learned while stepping through - http://chuck.cs.princeton.edu/doc/language/type.html
 
-	// an integer is automatically coerced into a float
-	<<<foo + x>>>;
-
-	// does the same thing
-	<<< (x + foo) == (foo + x) >>>;
+	//// durations
+	
+	4::second => dur bar;   // create a duration "bar" and chucking 5 seconds
+	<<< bar >>>;
+	
+	4::bar => dur measure;  // create a duration "measure" and chuck 4 bars
+	<<< measure >>>;
+	
+	<<< 4*bar == measure >>>;  // true
 	
 	
-	// special value "now"
-	<<< now >>>;
-	
-	// chucking now into an instance of a ChucKian time value type
-	now => time t1;
-	
-	<<< t1 >>>;
-	
-	// does t1 == now ?
-	<<< now == t1 >>>;
+	//// complex numbers
 	
 	
+	<<< #(2,3) >>>;          // inline complex number of 2 + 3i
+	#(2, 3) => complex c;    // create a complex number and chuck 2 + 3i into it
+	//<<< #(2, 3) == c >>>;  // can't compare complex numbers... this is the first weirdness that i've found
